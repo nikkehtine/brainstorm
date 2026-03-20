@@ -9,7 +9,7 @@ default:
 
 [group("dev")]
 client:
-    cd frontend && pnpm dev
+    cd client && pnpm dev
 
 [group("dev")]
 server:
@@ -23,7 +23,7 @@ lint-server:
 
 [group("fmt")]
 lint-client:
-    cd frontend && pnpm lint
+    cd client && pnpm lint
 
 [group("fmt")]
 lint: lint-server lint-client
@@ -34,7 +34,7 @@ format-server:
 
 [group("fmt")]
 format-client:
-    cd frontend && pnpm format
+    cd client && pnpm format
 
 [group("fmt")]
 format: format-server format-client
@@ -44,7 +44,7 @@ format: format-server format-client
 [group("housekeeping")]
 clean:
     rm -rf dist
-    rm -rf frontend/dist
+    rm -rf client/dist
     rm -rf .venv
     rm -rf __pycache__
 
