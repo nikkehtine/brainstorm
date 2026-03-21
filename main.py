@@ -1,11 +1,13 @@
 from dotenv import load_dotenv
-from flask import Flask
+from flask import Flask, jsonify
+from flask_cors import CORS
 from google import genai
 from google.genai import types
 
 load_dotenv()
 client = genai.Client()
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": ["http://localhost:5173"]}})
 
 system_prompt = (
     "You are a programming/data science project idea generator. You only respond to requests about generating ideas for projects "
@@ -34,18 +36,20 @@ system_prompt = (
 @app.route("/")
 def index():
     contents = generate_response(
-        "Generate a simple tagline for a programming project idea generator called 'Brainstorm'. Reply in a single sentence like this: 'Brainstorm - <tagline>'"
+        "Generate a simple tagline for a programming project idea generator. Reply in a single sentence."
     )
+    if not contents:
+        return jsonify({"error": "Error generating response"}), 500
     return contents
 
 
-def generate_response(prompt: str) -> str:
+def generate_response(prompt: str) -> str | None:
     response = client.models.generate_content(
         model="gemini-3-flash-preview",
         # config=types.GenerateContentConfig(system_instruction=system_prompt),
         contents=prompt,
     )
-    return response.text or "Error generating response"
+    return response.text
 
 
 # Catch-all just in case
