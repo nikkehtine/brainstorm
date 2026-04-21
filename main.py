@@ -1,3 +1,5 @@
+import time
+
 from dotenv import load_dotenv
 from flask import Flask, jsonify
 from flask_cors import CORS
@@ -33,7 +35,7 @@ system_prompt = (
 )
 
 
-@app.route("/")
+@app.route("/doot")
 def index():
     contents = generate_response(
         "Generate a simple tagline for a programming project idea generator. Reply in a single sentence."
@@ -52,10 +54,11 @@ def generate_response(prompt: str) -> str | None:
     return response.text
 
 
+@app.route("/time")
+def get_current_time():
+    return {"time": time.time()}
+
+
 # Catch-all just in case
-def main():
-    print("Run this using the `flask` command")
-
-
 if __name__ == "__main__":
-    main()
+    print("Run this using the `flask` command")

@@ -54,3 +54,8 @@ versions:
     @echo "Node:   $(node --version)"
     @echo "pnpm:   $(pnpm --version)"
     @echo "uv:     $(uv --version)"
+
+[group("housekeeping")]
+install:
+    uv sync
+    cd client && pnpm i
