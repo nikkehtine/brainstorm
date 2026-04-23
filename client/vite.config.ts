@@ -1,7 +1,19 @@
-import { reactRouter } from "@react-router/dev/vite";
 import tailwindcss from "@tailwindcss/vite";
-import type { UserConfig } from "vite";
+import { devtools } from "@tanstack/devtools-vite";
 
-export default {
-  plugins: [tailwindcss(), reactRouter()],
-} satisfies UserConfig;
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
+
+import viteReact from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
+
+const config = defineConfig({
+  resolve: { tsconfigPaths: true },
+  plugins: [
+    devtools(),
+    tailwindcss(),
+    tanstackRouter({ target: "react", autoCodeSplitting: true }),
+    viteReact(),
+  ],
+});
+
+export default config;
