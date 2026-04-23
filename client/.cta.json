@@ -11,6 +11,11 @@
   "install": true,
   "routerOnly": true,
   "version": 1,
+  "addOns": true,
   "framework": "react",
-  "chosenAddOns": ["biome"]
+  "chosenAddOns": [
+    "biome",
+    "shadcn",
+    "tanstack-query"
+  ]
 }
