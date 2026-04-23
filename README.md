@@ -15,7 +15,7 @@ This app is built using the FART stack:
 - Flask
 - AI (I have no idea what else to use for this acronym)
 - React
-- Tailwind
+- TanStack (Router)
 
 Dependencies that need to be installed to build and run the project:
 
